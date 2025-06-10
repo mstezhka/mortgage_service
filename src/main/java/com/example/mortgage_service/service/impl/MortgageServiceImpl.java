@@ -6,6 +6,7 @@ import com.example.mortgage_service.model.MortgageCheckResponseDto;
 import com.example.mortgage_service.model.MortgageRateRecord;
 import com.example.mortgage_service.repository.MortgageRatesRepository;
 import com.example.mortgage_service.service.MortgageService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,10 @@ import java.util.List;
 import static com.example.mortgage_service.constants.Constants.*;
 
 @Service
+@RequiredArgsConstructor
 @Log4j2
 public class MortgageServiceImpl implements MortgageService {
     private final MortgageRatesRepository mortgageRatesRepository;
-
-    public MortgageServiceImpl(MortgageRatesRepository mortgageRatesRepository) {
-        this.mortgageRatesRepository = mortgageRatesRepository;
-    }
 
     @Override
     public List<MortgageRateRecord> getAllMortgageRates() {

@@ -25,7 +25,6 @@ class MortgageServiceImplTest {
     private MortgageRatesRepository mortgageRatesRepository;
     private MortgageServiceImpl mortgageService;
 
-    // Constants copied from service for test consistency
     private static final Set<Integer> MATURITY_PERIODS = Set.of(15, 20, 25, 30);
     private static final int MORTGAGE_TO_INCOME_RATIO = 4;
 
@@ -72,10 +71,10 @@ class MortgageServiceImplTest {
     }
 
     @Test
-    void testCalculateMortgage_InvalidMaturityPeriod() {
+    void testCalculateMortgageWithInvalidMaturityPeriod() {
         MortgageCheckRequestDto request = new MortgageCheckRequestDto();
         request.setIncome(BigDecimal.valueOf(100000));
-        request.setMaturityPeriod(10); // Invalid maturity period
+        request.setMaturityPeriod(10);
         request.setLoanValue(BigDecimal.valueOf(200000));
         request.setHomeValue(BigDecimal.valueOf(300000));
 
@@ -124,7 +123,7 @@ class MortgageServiceImplTest {
         MortgageCheckRequestDto request = new MortgageCheckRequestDto();
         request.setIncome(BigDecimal.valueOf(100000));
         request.setMaturityPeriod(36);
-        request.setLoanValue(BigDecimal.valueOf(350000));  // Exceeds home value 300k
+        request.setLoanValue(BigDecimal.valueOf(350000));
         request.setHomeValue(BigDecimal.valueOf(300000));
 
         when(mortgageRatesRepository.getRateByMaturityPeriod(36)).thenReturn(BigDecimal.valueOf(0.01));
