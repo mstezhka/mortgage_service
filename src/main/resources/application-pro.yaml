@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: mortgage_service
+  docker:
+    compose:
+      enabled: true
